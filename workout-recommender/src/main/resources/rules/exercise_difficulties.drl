@@ -1,0 +1,36 @@
+package rules
+
+import com.sbnz.workoutrecommender.facts.RegisteredUserInfo;
+import com.sbnz.workoutrecommender.facts.WorkoutInfo;
+import com.sbnz.workoutrecommender.model.PreviousExperienceLevel;
+import com.sbnz.workoutrecommender.model.ExerciseDifficultyLevel;
+
+rule "User previous experience beginner"
+    when
+    	$regUser: RegisteredUserInfo(previousExperienceLevel = PreviousExperienceLevel.BEGINNER)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setExerciseDifficultyLevel(ExerciseDifficultyLevel.BEGINNER)
+        }
+end
+
+rule "User previous experience intermediate"
+    when
+    	$regUser: RegisteredUserInfo(previousExperienceLevel = PreviousExperienceLevel.INTERMEDIATE)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setExerciseDifficultyLevel(ExerciseDifficultyLevel.INTERMEDIATE)
+        }
+end
+
+rule "User previous experience advanced"
+    when
+    	$regUser: RegisteredUserInfo(previousExperienceLevel = PreviousExperienceLevel.ADVANCED)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setExerciseDifficultyLevel(ExerciseDifficultyLevel.ADVANCED)
+        }
+end

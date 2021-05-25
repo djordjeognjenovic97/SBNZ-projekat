@@ -24,16 +24,20 @@ public class Exercise {
     @Enumerated(EnumType.ORDINAL)
     private ExerciseDifficultyLevel exerciseDifficultyLevel;
 
+    @Column(nullable=false)
+    private boolean isCardio;
+
     public Exercise() {
     }
 
-    public Exercise(Long id, Equipment equipment, List<MuscleGroup> targetedMuscles, String name, String description, ExerciseDifficultyLevel exerciseDifficultyLevel) {
+    public Exercise(Long id, Equipment equipment, List<MuscleGroup> targetedMuscles, String name, String description, ExerciseDifficultyLevel exerciseDifficultyLevel, boolean isCardio) {
         this.id = id;
         this.equipment = equipment;
         this.targetedMuscles = targetedMuscles;
         this.name = name;
         this.description = description;
         this.exerciseDifficultyLevel = exerciseDifficultyLevel;
+        this.isCardio = isCardio;
     }
 
     public Long getId() {
@@ -82,5 +86,13 @@ public class Exercise {
 
     public void setExerciseDifficultyLevel(ExerciseDifficultyLevel exerciseDifficultyLevel) {
         this.exerciseDifficultyLevel = exerciseDifficultyLevel;
+    }
+
+    public boolean isCardio() {
+        return isCardio;
+    }
+
+    public void setCardio(boolean cardio) {
+        isCardio = cardio;
     }
 }

@@ -7,20 +7,20 @@ import java.util.List;
 public class RegisteredUser extends User{
 
     @Enumerated(EnumType.ORDINAL)
-    private PreviousExperience previousExperience;
+    private PreviousExperienceLevel previousExperienceLevel;
 
     @Enumerated(EnumType.ORDINAL)
     private DailyPhysicalActivity dailyPhysicalActivity;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Workout> workouts;
 
     public RegisteredUser() {
     }
 
-    public RegisteredUser(Integer id, String firstName, String lastName, String username, String email, String password, PreviousExperience previousExperience, DailyPhysicalActivity dailyPhysicalActivity, List<Workout> workouts) {
+    public RegisteredUser(Integer id, String firstName, String lastName, String username, String email, String password, PreviousExperienceLevel previousExperienceLevel, DailyPhysicalActivity dailyPhysicalActivity, List<Workout> workouts) {
         super(id, firstName, lastName, username, email, password);
-        this.previousExperience = previousExperience;
+        this.previousExperienceLevel = previousExperienceLevel;
         this.dailyPhysicalActivity = dailyPhysicalActivity;
         this.workouts = workouts;
     }
@@ -41,11 +41,11 @@ public class RegisteredUser extends User{
         this.workouts = workouts;
     }
 
-    public PreviousExperience getPreviousExperience() {
-        return previousExperience;
+    public PreviousExperienceLevel getPreviousExperienceLevel() {
+        return previousExperienceLevel;
     }
 
-    public void setPreviousExperience(PreviousExperience previousExperience) {
-        this.previousExperience = previousExperience;
+    public void setPreviousExperienceLevel(PreviousExperienceLevel previousExperienceLevel) {
+        this.previousExperienceLevel = previousExperienceLevel;
     }
 }

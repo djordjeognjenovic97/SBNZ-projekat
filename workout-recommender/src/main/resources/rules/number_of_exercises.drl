@@ -1,0 +1,149 @@
+package rules
+
+import com.sbnz.workoutrecommender.facts.RegisteredUserInfo;
+import com.sbnz.workoutrecommender.facts.WorkoutInfo;
+import com.sbnz.workoutrecommender.facts.WorkoutRequest;
+import com.sbnz.workoutrecommender.model.DailyPhysicalActivity;
+import com.sbnz.workoutrecommender.model.PreviousExperienceLevel;
+
+rule "CARDIO Daily physical activity is low"
+    when
+    	$regUser: RegisteredUserInfo(dailyPhysicalActivity = DailyPhysicalActivity.LOW)
+    	$workInfo: WorkoutInfo()
+    then
+        System.out.println("Daily physical activity is low cardio, num of cardio exercises 3");
+        modify($workInfo) {
+            setNumberOfCardioExercises(3)
+        }
+end
+
+rule "CARDIO Daily physical activity is medium"
+    when
+    	$regUser: RegisteredUserInfo(dailyPhysicalActivity = DailyPhysicalActivity.MEDIUM)
+    	$workInfo: WorkoutInfo()
+    then
+        System.out.println("Daily physical activity is medium, num of cardio exercises 2");
+        modify($workInfo) {
+            setNumberOfCardioExercises(2)
+        }
+end
+
+rule "CARDIO Daily physical activity is high"
+    when
+    	$regUser: RegisteredUserInfo(dailyPhysicalActivity = DailyPhysicalActivity.HIGH)
+    	$workInfo: WorkoutInfo()
+    then
+        System.out.println("Daily physical activity is high, num of cardio exercises 1");
+        modify($workInfo) {
+            setNumberOfCardioExercises(1)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is 30, prev exp lvl beginner"
+    when
+    	$workReq: WorkoutRequest(trainingDuration == 30)
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.BEGINNER)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(5)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is 30, prev exp lvl intermediate or advanced"
+    when
+    	$workReq: WorkoutRequest(trainingDuration == 30)
+    	$regUser: RegisteredUserInfo((previousExperienceLevel == PreviousExperienceLevel.INTERMEDIATE) || (previousExperienceLevel == PreviousExperienceLevel.ADVANCED))
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(6)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is between 30 and 45, prev exp lvl beginner"
+    when
+    	$workReq: WorkoutRequest((trainingDuration > 30) && (trainingDuration <= 45))
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.BEGINNER)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(6)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is between 30 and 45, prev exp lvl intermediate or advanced"
+    when
+    	$workReq: WorkoutRequest((trainingDuration > 30) && (trainingDuration <= 45))
+        $regUser: RegisteredUserInfo((previousExperienceLevel == PreviousExperienceLevel.INTERMEDIATE) || (previousExperienceLevel == PreviousExperienceLevel.ADVANCED))    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(7)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is between 45 and 60, prev exp lvl beginner"
+    when
+    	$workReq: WorkoutRequest((trainingDuration > 45) && (trainingDuration <= 60))
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.BEGINNER)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(7)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is between 45 and 60, prev exp lvl intermediate"
+    when
+    	$workReq: WorkoutRequest((trainingDuration > 45) && (trainingDuration <= 60))
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.INTERMEDIATE)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(8)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is between 45 and 60, prev exp lvl advanced"
+    when
+    	$workReq: WorkoutRequest((trainingDuration > 45) && (trainingDuration <= 60))
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.ADVANCED)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(9)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is above 60, prev exp lvl beginner"
+    when
+    	$workReq: WorkoutRequest(trainingDuration > 60)
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.BEGINNER)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(8)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is above 60, prev exp lvl intermediate"
+    when
+    	$workReq: WorkoutRequest(trainingDuration > 60)
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.INTERMEDIATE)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(9)
+        }
+end
+
+rule "NUM OF EXERCISES training duration is above 60, prev exp lvl advanced"
+    when
+    	$workReq: WorkoutRequest(trainingDuration > 60)
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.ADVANCED)
+    	$workInfo: WorkoutInfo()
+    then
+        modify($workInfo) {
+            setNumberOfExercises(10)
+        }
+end

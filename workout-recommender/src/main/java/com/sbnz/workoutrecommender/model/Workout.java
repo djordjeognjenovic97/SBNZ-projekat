@@ -22,18 +22,26 @@ public class Workout {
     @OneToMany(mappedBy = "workout", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<WorkoutExercise> workoutExercises;
 
+    @Column(nullable=false)
+    private int numberOfCardioExercises;
+
+    @Column(nullable=false)
+    private int numberOfExercises;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private RegisteredUser registeredUser;
 
     public Workout() {
     }
 
-    public Workout(Long id, String name, int restBetweenExercises, Feedback feedback, List<WorkoutExercise> workoutExercises, RegisteredUser registeredUser) {
+    public Workout(Long id, String name, int restBetweenExercises, Feedback feedback, List<WorkoutExercise> workoutExercises, int numberOfCardioExercises, int numberOfExercises, RegisteredUser registeredUser) {
         this.id = id;
         this.name = name;
         this.restBetweenExercises = restBetweenExercises;
         this.feedback = feedback;
         this.workoutExercises = workoutExercises;
+        this.numberOfCardioExercises = numberOfCardioExercises;
+        this.numberOfExercises = numberOfExercises;
         this.registeredUser = registeredUser;
     }
 
@@ -83,5 +91,21 @@ public class Workout {
 
     public void setRegisteredUser(RegisteredUser registeredUser) {
         this.registeredUser = registeredUser;
+    }
+
+    public int getNumberOfCardioExercises() {
+        return numberOfCardioExercises;
+    }
+
+    public void setNumberOfCardioExercises(int numberOfCardioExercises) {
+        this.numberOfCardioExercises = numberOfCardioExercises;
+    }
+
+    public int getNumberOfExercises() {
+        return numberOfExercises;
+    }
+
+    public void setNumberOfExercises(int numberOfExercises) {
+        this.numberOfExercises = numberOfExercises;
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Admin extends User{
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Equipment> equipments;
 
     public Admin() {
