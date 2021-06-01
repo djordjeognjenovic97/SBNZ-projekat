@@ -8,7 +8,7 @@ import com.sbnz.workoutrecommender.model.PreviousExperienceLevel;
 
 rule "CARDIO Daily physical activity is low"
     when
-    	$regUser: RegisteredUserInfo(dailyPhysicalActivity = DailyPhysicalActivity.LOW)
+    	$regUser: RegisteredUserInfo(dailyPhysicalActivity == DailyPhysicalActivity.LOW)
     	$workInfo: WorkoutInfo()
     then
         System.out.println("Daily physical activity is low cardio, num of cardio exercises 3");
@@ -19,7 +19,7 @@ end
 
 rule "CARDIO Daily physical activity is medium"
     when
-    	$regUser: RegisteredUserInfo(dailyPhysicalActivity = DailyPhysicalActivity.MEDIUM)
+    	$regUser: RegisteredUserInfo(dailyPhysicalActivity == DailyPhysicalActivity.MEDIUM)
     	$workInfo: WorkoutInfo()
     then
         System.out.println("Daily physical activity is medium, num of cardio exercises 2");
@@ -30,7 +30,7 @@ end
 
 rule "CARDIO Daily physical activity is high"
     when
-    	$regUser: RegisteredUserInfo(dailyPhysicalActivity = DailyPhysicalActivity.HIGH)
+    	$regUser: RegisteredUserInfo(dailyPhysicalActivity == DailyPhysicalActivity.HIGH)
     	$workInfo: WorkoutInfo()
     then
         System.out.println("Daily physical activity is high, num of cardio exercises 1");

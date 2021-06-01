@@ -7,7 +7,7 @@ import com.sbnz.workoutrecommender.model.ExerciseDifficultyLevel;
 
 rule "User previous experience beginner"
     when
-    	$regUser: RegisteredUserInfo(previousExperienceLevel = PreviousExperienceLevel.BEGINNER)
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.BEGINNER)
     	$workInfo: WorkoutInfo()
     then
         modify($workInfo) {
@@ -17,7 +17,7 @@ end
 
 rule "User previous experience intermediate"
     when
-    	$regUser: RegisteredUserInfo(previousExperienceLevel = PreviousExperienceLevel.INTERMEDIATE)
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.INTERMEDIATE)
     	$workInfo: WorkoutInfo()
     then
         modify($workInfo) {
@@ -27,7 +27,7 @@ end
 
 rule "User previous experience advanced"
     when
-    	$regUser: RegisteredUserInfo(previousExperienceLevel = PreviousExperienceLevel.ADVANCED)
+    	$regUser: RegisteredUserInfo(previousExperienceLevel == PreviousExperienceLevel.ADVANCED)
     	$workInfo: WorkoutInfo()
     then
         modify($workInfo) {
