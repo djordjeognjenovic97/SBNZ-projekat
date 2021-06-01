@@ -5,6 +5,7 @@ import com.sbnz.workoutrecommender.facts.WorkoutInfo;
 import com.sbnz.workoutrecommender.facts.WorkoutRequest;
 import com.sbnz.workoutrecommender.model.DailyPhysicalActivity;
 import com.sbnz.workoutrecommender.model.PreviousExperienceLevel;
+import com.sbnz.workoutrecommender.model.MuscleGroup;
 
 rule "CARDIO Daily physical activity is low"
     when
@@ -146,4 +147,142 @@ rule "NUM OF EXERCISES training duration is above 60, prev exp lvl advanced"
         modify($workInfo) {
             setNumberOfExercises(10)
         }
+end
+
+rule "NUM OF EXERCISES 5, muscle group CHEST"
+    when
+        $workReq: WorkoutRequest(getMuscleGroups() contains MuscleGroup.CHEST)
+        $workInfo: WorkoutInfo(numberOfExercises == 5)
+    then
+            $workInfo.setNumberOfExercisesM1(5);
+            $workInfo.setNumberOfExercisesM2(0);
+            $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+            update($workInfo);
+end
+
+rule "NUM OF EXERCISES 6, muscle group CHEST"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST)
+        $workInfo: WorkoutInfo(numberOfExercises == 6)
+    then
+        $workInfo.setNumberOfExercisesM1(6);
+        $workInfo.setNumberOfExercisesM2(0);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 7, muscle group CHEST"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST)
+        $workInfo: WorkoutInfo(numberOfExercises == 7)
+    then
+        $workInfo.setNumberOfExercisesM1(7);
+        $workInfo.setNumberOfExercisesM2(0);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 8, muscle group CHEST"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST)
+        $workInfo: WorkoutInfo(numberOfExercises == 8)
+    then
+        $workInfo.setNumberOfExercisesM1(8);
+        $workInfo.setNumberOfExercisesM2(0);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 9, muscle group CHEST"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST)
+        $workInfo: WorkoutInfo(numberOfExercises == 9)
+    then
+        $workInfo.setNumberOfExercisesM1(9);
+        $workInfo.setNumberOfExercisesM2(0);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 10, muscle group CHEST"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST)
+        $workInfo: WorkoutInfo(numberOfExercises == 10)
+    then
+        $workInfo.setNumberOfExercisesM1(10);
+        $workInfo.setNumberOfExercisesM2(0);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 5, muscle groups CHEST and BICEPS"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST && muscleGroups contains MuscleGroup.BICEPS)
+        $workInfo: WorkoutInfo(numberOfExercises == 5)
+    then
+        $workInfo.setNumberOfExercisesM1(3);
+        $workInfo.setNumberOfExercisesM2(2);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.BICEPS);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 6, muscle groups CHEST and BICEPS"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST && muscleGroups contains MuscleGroup.BICEPS)
+        $workInfo: WorkoutInfo(numberOfExercises == 6)
+    then
+        $workInfo.setNumberOfExercisesM1(3);
+        $workInfo.setNumberOfExercisesM2(3);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.BICEPS);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 7, muscle groups CHEST and BICEPS"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST && muscleGroups contains MuscleGroup.BICEPS)
+        $workInfo: WorkoutInfo(numberOfExercises == 7)
+    then
+        $workInfo.setNumberOfExercisesM1(4);
+        $workInfo.setNumberOfExercisesM2(3);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.BICEPS);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 8, muscle groups CHEST and BICEPS"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST && muscleGroups contains MuscleGroup.BICEPS)
+        $workInfo: WorkoutInfo(numberOfExercises == 8)
+    then
+        $workInfo.setNumberOfExercisesM1(4);
+        $workInfo.setNumberOfExercisesM2(4);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.BICEPS);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 9, muscle groups CHEST and BICEPS"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST && muscleGroups contains MuscleGroup.BICEPS)
+        $workInfo: WorkoutInfo(numberOfExercises == 9)
+    then
+        $workInfo.setNumberOfExercisesM1(5);
+        $workInfo.setNumberOfExercisesM2(4);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.BICEPS);
+        update($workInfo);
+end
+
+rule "NUM OF EXERCISES 10, muscle groups CHEST and BICEPS"
+    when
+        $workReq: WorkoutRequest(muscleGroups contains MuscleGroup.CHEST && muscleGroups contains MuscleGroup.BICEPS)
+        $workInfo: WorkoutInfo(numberOfExercises == 10)
+    then
+        $workInfo.setNumberOfExercisesM1(5);
+        $workInfo.setNumberOfExercisesM2(5);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.CHEST);
+        $workInfo.getTargetedMuscles().add(MuscleGroup.BICEPS);
+        update($workInfo);
 end

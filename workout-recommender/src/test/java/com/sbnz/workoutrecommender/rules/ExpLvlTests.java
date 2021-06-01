@@ -1,6 +1,5 @@
 package com.sbnz.workoutrecommender.rules;
 
-
 import com.sbnz.workoutrecommender.facts.RegisteredUserInfo;
 import com.sbnz.workoutrecommender.model.PreviousExperienceLevel;
 import org.junit.Test;
@@ -17,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ExpLvlTests {
+
     @Autowired
     private KieContainer kieContainer;
-
 
     private KieSession prepSession(RegisteredUserInfo registeredUserInfo) {
 
@@ -35,7 +34,6 @@ public class ExpLvlTests {
         rui.setMonthsOfPrevTraining(months);
         return rui;
     }
-
 
     @Test
     public void testExpLvlB() {
